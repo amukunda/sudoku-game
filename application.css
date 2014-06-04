@@ -1,0 +1,95 @@
+.section {
+  clear: both;
+  padding: 0px;
+  margin: 0px;
+}
+
+.col {
+  display: block;
+  float:left;
+  margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+                                               
+.right_col {
+  width: 66.13%;
+}
+.left_col {
+  width: 32.26%;
+}
+
+/*Use full width when width is at the most 568px*/
+@media only screen and (max-width: 568px) {
+  .col { 
+    margin: 1% 0 1% 0%;
+  }
+  .left_col {
+    width: 100%; 
+  }
+  .right_col {
+    width: 100%;
+  }
+}
+
+.sudoku_board{
+  width:80%;
+  height:100%;
+  padding: 3%;
+  border:1px solid black;
+  
+/* Internet Explorer 10 */
+  display:-ms-flexbox;
+  -ms-flex-pack:center;
+  -ms-flex-align:center;
+
+/* Firefox */
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+/* Safari, Chrome, and Opera */
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+/* W3C */
+  display:box;
+  box-pack:center;
+  box-align:center;
+
+}
+
+/* cells and blocks inside the sudoku board  */
+.matrixrow { 
+  float: left;
+  margin-top: 2px;
+  padding: 0;
+  width: 33.33%;
+} 
+
+.matrixcell { 
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 33.33%;
+}
+
+.matrixrow:nth-child(odd) .matrixcell input{
+    background: green;
+}
+   
+.clear {
+  clear: both;
+}
+
+/*Adjust the sudoku cells*/
+input {
+  width: 90%;
+  height: 100%;
+  padding: 0 5%;
+  margin: 1%;
+  text-align: center;
+  border: #000000 solid;
+  border-width: 1px;
+  font-size: 1.8em;
+}
