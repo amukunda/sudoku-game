@@ -21,15 +21,44 @@ var TableObject = (function() {
      * Populate the table
      */
     populate: function() {
+    	puzzle = [];
     	for(x=0;x<9;x++){
     	  for(y=0;y<9;y++){
     	  	id = 9*x+y+1;
-    	  	if(input[x][y] != 0 && Math.random() > 0.5) {
+    	  	if(Math.random() > 0.5) {
       			id= 9*x+y+1;
         		document.getElementById(""+id+"").value = input[x][y];
+        		puzzle[9*x+y] = input[x][y]
       		} else{
       			document.getElementById(""+id+"").value = "";
+      			puzzle[9*x+y] = "0";
       		}
+    	  	$("#"+id+"").removeClass("incorrect");
+    	  }	
+    	}
+    },
+    
+    /**
+     * Check whether the data is correct
+     */
+    checking: function() {
+    	flag = true;
+    	for(x=0;x<9;x++){
+    	  for(y=0;y<9;y++){
+    	  	id = 9*x+y+1;
+    	  	flag = document.getElementById(""+id+"").value == "" ? false : true;
+    	    if(input[x][y] != document.getElementById(""+id+"").value){
+    	      $("#"+id+"").addClass("incorrect");  
+    	      flag = false;
+    	    } else {
+    	    	$("#"+id+"").removeClass("incorrect");
+    	    }
+    	  }
+    	}
+    	if(flag){
+    	  if(confirm("Woohoo .... Try Another One")){
+    	    t1.shuffle();
+          t1.populate();
     	  }	
     	}
     },

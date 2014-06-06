@@ -75,7 +75,7 @@
 }
 
 .matrixrow:nth-child(odd) .matrixcell input{
-    background: green;
+  background: green; 
 }
    
 .clear {
@@ -93,3 +93,9 @@ input {
   border-width: 1px;
   font-size: 1.8em;
 }
+
+.incorrect {
+  color: red !important;    
+}
+
+
