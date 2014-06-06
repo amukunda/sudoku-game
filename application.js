@@ -5,31 +5,70 @@ var TableObject = (function() {
      */
   	init: function() { 
   		var mydata = JSON.parse(matrix_3_3);
-  		input = (""+mydata[0].input).split("");
-  		t1.populatetable(input);
+  		var temp = (""+mydata[0].input).split("");
+  		input = [];
+  		for(x=0;x<9;x++){
+  			input[x] = [];
+    	  for(y=0;y<9;y++){
+    	    input[x][y] = temp[9*x+y]; 	
+    	  }	
+    	}
+  		t1.shuffle();
+  		t1.populate();
     },
     
     /**
      * Populate the table
      */
-    populatetable: function(){
-    	length = input.length;
-    	for(i = 0; i<length; i++){
-    		if(input[i] != 0) {
-    			id= i+1;
-      		document.getElementById(""+id+"").value = input[i];
-    		}
+    populate: function() {
+    	for(x=0;x<9;x++){
+    	  for(y=0;y<9;y++){
+    	  	id = 9*x+y+1;
+    	  	if(input[x][y] != 0 && Math.random() > 0.5) {
+      			id= 9*x+y+1;
+        		document.getElementById(""+id+"").value = input[x][y];
+      		} else{
+      			document.getElementById(""+id+"").value = "";
+      		}
+    	  }	
     	}
     },
     
-    getsolution: function(){
-    	length = input.length;
-    	/*foreach(i=0;i<length;i++){
-    		
-    	  t1.getrow();
-    	  t1.getcolumn();
-    	  t1.getsection();
-    	}*/
+    /**
+     * Shuffle the input for each new puzzle
+     */
+    shuffle: function() {
+      row_or_column = Math.ceil(Math.random()*2);  // 1 - row , 2 - column
+      index        = Math.floor(Math.random()*3);  // 0-first,1-middle,2-last : indicates the row/column to swap
+      
+      /* the following code randomizes the swap process*/
+      swap_1        =  index + Math.floor(Math.random()*3)*3;
+      do {
+      	swap_2      =  index + Math.floor(Math.random()*3)*3;
+      }while(swap_2 == swap_1);
+      count = 0;
+      do{
+        swap_3 = 	index + count*3;
+        count ++;
+      }while(swap_3 == swap_2 || swap_3 == swap_1);
+      
+      /*The actual swap process*/
+      if(row_or_column == 1){
+        for(i=0;i<9;i++){
+          temp = input[swap_1][i];
+          input[swap_1][i] = input[swap_2][i];
+          input[swap_2][i] = input[swap_3][i];
+          input[swap_3][i] = temp;
+        }
+      } else {
+      	for(i=0;i<9;i++){
+          temp = input[i][swap_1];
+          input[i][swap_1] = input[i][swap_2];
+          input[i][swap_2] = input[i][swap_3];
+          input[i][swap_3] = temp;
+        }	
+      }
+      
     },
     
   };
