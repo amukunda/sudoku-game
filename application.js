@@ -63,6 +63,15 @@ var TableObject = (function() {
     	}
     },
     
+    solve: function() {
+    	for(x=0;x<9;x++){
+    	  for(y=0;y<9;y++){
+    	  	id = 9*x+y+1;
+    	  	document.getElementById(""+id+"").value = input[x][y];	
+    	  }
+    	}  
+    },
+    
     /**
      * Shuffle the input for each new puzzle
      */

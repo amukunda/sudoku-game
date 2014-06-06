@@ -8,4 +8,8 @@
   $("#check").on( "click", function() {
     o1.checking();
   });
+  $("#solve").on( "click", function() {
+    o1.solve();
+  });
+  
 }());
