@@ -11,5 +11,7 @@
   $("#solve").on( "click", function() {
     o1.solve();
   });
-  
+  $("#reset").on( "click", function() {
+    o1.reset();
+  });
 }());
