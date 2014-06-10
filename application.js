@@ -102,18 +102,18 @@ var TableObject = (function() {
      * swap1,swap2,swap3 are randomly selected from the above set of rows and columns to decide the order of swapping 
      * 
      * for eg:
-     *  row 0,3,6 will be swapped based on the input given below
+     *  row 0,1,2 will be swapped based on the input given below
      *  the order of swapping is randomly decided viz each row could be swapped with any of the other rows
      *  
      *  123|456|789 <------ row_or_column=1,index=0 (row 0)
-     *  234|567|891           |        |
-     *  345|678|912           |        |
-     *  -----------           |        |
-     *  456|789|123 <---------(row 3) |
-     *  567|891|234                    |
-     *  678|912|345                    |
-     *  ------------                   |
-     *  789|123|456 <------------------(row 6)  
+     *  234|567|891 <---------(row 1)         
+     *  345|678|912 <------------------(row 2) 
+     *  ----------- 
+     *  456|789|123  
+     *  567|891|234                    
+     *  678|912|345                    
+     *  ------------                   
+     *  789|123|456   
      *  891|234|567 
      *  912|345|678
      *  
@@ -122,20 +122,18 @@ var TableObject = (function() {
     
     shuffle: function() {
       row_or_column = Math.ceil(Math.random()*2);  // 1 - row , 2 - column
-      index        = Math.floor(Math.random()*3);  // 0-first,1-middle,2-last : indicates the row/column to swap
+      index         = Math.floor(Math.random()*3);  // 0-first,1-middle,2-last : indicates the set of rows/columns to swap
       
       /* the following code randomizes the swap process*/
-      swap_1        =  index + Math.floor(Math.random()*3)*3;
+      swap_1        =  index*3 + Math.floor(Math.random()*3);
       do {
-      	swap_2      =  index + Math.floor(Math.random()*3)*3;
+      	swap_2      =  index*3 + Math.floor(Math.random()*3);
       }while(swap_2 == swap_1);
       count = 0;
       do{
-        swap_3 = 	index + count*3;
+        swap_3 = 	index*3 + count;
         count ++;
       }while(swap_3 == swap_2 || swap_3 == swap_1);
-      
-      /*The actual swap process*/
       if(row_or_column == 1){
         for(i=0;i<9;i++){
           temp = input[swap_1][i];
@@ -151,7 +149,33 @@ var TableObject = (function() {
           input[i][swap_3] = temp;
         }	
       }
+      t1.permuter();
     },
+    
+    
+    /**
+     * The permuter changes the mapping of numbers in a solved puzzle generating a different puzzle
+     * 
+     * for eg: 
+     * row     1 2 3 4 5 6 7 8 9 
+     * key     5 6 7 8 9 1 2 3 4
+     * 
+     * all the 1s in the table would change to 5, 2s would chnage to 6 and so on
+     */
+    permuter: function() {
+      key = ['5','6','7','8','9','1','2','3','4'];
+      mapper = new Array;
+      x = Math.floor(Math.random()*9);
+      for(y=0;y<9;y++){
+    	  mapper[input[x][y]] = key[y];  	
+    	}
+      for(x=0;x<9;x++){  // actual mapping
+    	  for(y=0;y<9;y++){
+    	    input[x][y] = mapper[input[x][y]];  	
+    	  }
+      }
+      console.log(input);
+    }
   };
   return t1;
 }());
