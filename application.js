@@ -18,6 +18,7 @@ var TableObject = (function() {
     	  }	
     	}
   		t1.shuffle();
+  		t1.permuter();
   		t1.populate();
     },
     
@@ -50,7 +51,8 @@ var TableObject = (function() {
       for(i=0;i<81;i++){
       	value = puzzle[i];
       	id = i+1;
-        document.getElementById(""+id+"").value = value == "0" ? "" : value;	
+        document.getElementById(""+id+"").value = value == "0" ? "" : value;
+        $("#"+id+"").removeClass("incorrect");
       }	
     },
     
@@ -149,7 +151,6 @@ var TableObject = (function() {
           input[i][swap_3] = temp;
         }	
       }
-      t1.permuter();
     },
     
     
@@ -160,7 +161,7 @@ var TableObject = (function() {
      * row     1 2 3 4 5 6 7 8 9 
      * key     5 6 7 8 9 1 2 3 4
      * 
-     * all the 1s in the table would change to 5, 2s would chnage to 6 and so on
+     * all the 1s in the table would change to 5, 2s would change to 6 and so on
      */
     permuter: function() {
       key = ['5','6','7','8','9','1','2','3','4'];

@@ -3,6 +3,7 @@
   o1.init();
   $("#new").on( "click", function() {
     o1.shuffle();
+    o1.permuter();
     o1.populate();
   });
   $("#check").on( "click", function() {
