@@ -91,7 +91,8 @@ var TableObject = (function() {
     	for(x=0;x<9;x++){
     	  for(y=0;y<9;y++){
     	  	id = 9*x+y+1;
-    	  	document.getElementById(""+id+"").value = input[x][y];	
+    	  	document.getElementById(""+id+"").value = input[x][y];
+    	  	$("#"+id+"").removeClass("incorrect");
     	  }
     	}  
     },
@@ -175,7 +176,6 @@ var TableObject = (function() {
     	    input[x][y] = mapper[input[x][y]];  	
     	  }
       }
-      console.log(input);
     }
   };
   return t1;
