@@ -93,14 +93,14 @@ hr{
   width: 100%;
 }
 .span_2_of_3 {
-  width: 56.13%;
+  width: 50%;
 }
 .span_1_of_3 {
-  width: 22.26%;
+  width: 32%;
 }
 
 .sudoku_board{
-  width:80%;
+  width:50%;
   height:100%;
   padding: 3%;
   border:1px solid black;
