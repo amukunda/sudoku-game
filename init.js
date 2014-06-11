@@ -15,4 +15,9 @@
   $("#reset").on( "click", function() {
     o1.reset();
   });
+  $('.matrixcell').keyup(function(ev){
+    if((ev.which < 49 || ev.which > 57) && ev.which != 8) {
+      alert("Please enter a number 1 through 9");
+    }	
+  });
 }());
